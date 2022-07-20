@@ -26,9 +26,9 @@ app.use("*", (req, res, next) => {
     global.nodeLoader.setImportMapPromise(Promise.resolve(nodeImportMap));
     if (developmentMode) {
       browserImportMap.imports["@isomorphic-mf/root-config"] =
-        "http://20.63.143.128:9876/isomorphic-mf-root-config.js";
+        "https://singlespa.blob.core.windows.net/root-config/isomorphic-mf-root-config.js";
       browserImportMap.imports["@isomorphic-mf/root-config/"] =
-        "http://20.63.143.128:9876/";
+        "https://singlespa.blob.core.windows.net/root-config/";
     }
     return { nodeImportMap, browserImportMap };
   });
