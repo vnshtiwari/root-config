@@ -6,7 +6,6 @@
     "develop:webpack": "webpack-dev-server --mode=development --port 9876 --env.isLocal=true --config webpack.config.cjs",
     "start:node": "node --experimental-loader @node-loader/core server/server.js",
     "lint": "eslint browser server",
-    "test": "jest",
     "prettier": "prettier --write './**'",
     "build": "webpack --mode=production --config webpack.config.cjs"
   },
