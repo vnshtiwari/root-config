@@ -8,6 +8,7 @@ registerApplication({
   ],
 });
 
+
 registerApplication({
   name: "@app/AppFooter",
   app: () => System.import("@app/AppFooter"),
