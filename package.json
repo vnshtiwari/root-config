@@ -14,7 +14,9 @@
     "appFooter": "cd ../AppFooter && yarn start --port 8081",
     "appBanner": "cd ../AppBanner && yarn start --port 8082",
     "home": "cd ../Home && yarn start --port 8083",
-    "products": "cd ../Products && yarn start --port 8084"
+    "products": "cd ../Products && yarn start --port 8084",
+    "productsDetail": "cd ../ProductDetail && yarn start --port 8085",
+    "utility": "cd ../utility && yarn start --port 8086"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
