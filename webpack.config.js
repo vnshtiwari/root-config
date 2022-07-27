@@ -27,7 +27,10 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       }),
       new CopyPlugin({
-        patterns: [{ from: "importmap.json", to: "" }],
+        patterns: [
+          { from: "importmap.json", to: "" },
+          { from: "staticwebapp.config.json", to: "" },
+        ],
       }),
     ],
   });
