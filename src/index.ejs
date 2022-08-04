@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>Prudential Health Insurance</title>
   <!--
     Remove this if you only support browsers that support async/await.
     This is needed by babel to share largeish helper code for compiling async/await in older
@@ -39,6 +39,13 @@
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
   <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+  <meta name="description" content="Prudentil Health Insurance"/>
+  <link rel="icon" type="image/png" href="./images/logo_prudential.png" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="apple-touch-icon" href="/images/logo_prudential.png" />
+  <link rel="manifest" href="/manifest.json" />
+
   
   <!-- Add your organization's prod import map URL to this script's src  -->
   <script type="systemjs-importmap" src="/importmap.json"></script>
@@ -56,7 +63,9 @@
         "@app/appBanner": "//localhost:8082/app-appBanner.js",
         "@app/Home": "//localhost:8083/app-Home.js",
         "@app/Products": "//localhost:8084/app-Products.js",
-        "@app/ProductDetail": "//localhost:8085/app-ProductDetail.js"
+        "@app/ProductDetail": "//localhost:8085/app-ProductDetail.js",
+        "@app/Career": "//localhost:8087/app-Career.js"
+
       }
     }
   </script>
@@ -84,15 +93,31 @@
   <script>
     System.import('@app/root-config');
     //System.import('@app/appBanner');
+    if('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./serviceworker.js')
+                    .then((reg) => console.log('Success: ', reg.scope))
+                    .catch((err) => console.log('Failure: ', err));
+            })
+        }
  </script>
   <main>
+    <single-spa-router mode="hash" base="/">
+
     <div class="header" id="single-spa-application:@app/AppHeader"></div>
+    <route path="/home">
     <div class="home" id="single-spa-application:@app/Home"></div>
+  </route>
+  <route path="/products">
+
     <div class="products" id="single-spa-application:@app/Products"></div>
+  </route>
+  <div class="career" id="single-spa-application:@app/Career"></div>
+
     <footer class="bottom">
       <div class="footer" id="single-spa-application:@app/AppFooter"></div>
     </footer>
-
+</single-spa-router>
   </main> 
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
