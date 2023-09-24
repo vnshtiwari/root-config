@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-09-24T20:38:04.698Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="SxaJAAVufsIiBP6STOFn" version="21.8.0" type="github" pages="8">
+<mxfile host="app.diagrams.net" modified="2023-09-24T20:38:15.222Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="mDDqn2iWAwyBFFEc220H" version="21.8.0" type="github" pages="8">
   <diagram name="Page-1" id="MzVWoEWec8v56sEEweH5">
     <mxGraphModel dx="1050" dy="574" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -749,14 +749,6 @@
         </mxCell>
         <mxCell id="l0cKtgZFALDiXiWLSuaM-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="10" y="80" width="80" height="320" as="geometry" />
-        </mxCell>
-        <mxCell id="vMa5X28UVjGMav1UkNeD-4" value="List" style="strokeColor=#dddddd;shadow=1;strokeWidth=1;rounded=1;absoluteArcSize=1;arcSize=2;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=bottom;spacingLeft=0;fontColor=#999999;fontSize=12;whiteSpace=wrap;spacingBottom=2;html=1;" vertex="1" parent="1">
-          <mxGeometry x="390" y="270" width="70" height="85" as="geometry" />
-        </mxCell>
-        <mxCell id="vMa5X28UVjGMav1UkNeD-5" value="" style="sketch=0;dashed=0;connectable=0;html=1;fillColor=#757575;strokeColor=none;shape=mxgraph.gcp2.list;part=1;" vertex="1" parent="vMa5X28UVjGMav1UkNeD-4">
-          <mxGeometry x="0.5" width="44.5" height="50" relative="1" as="geometry">
-            <mxPoint x="-22.25" y="10" as="offset" />
-          </mxGeometry>
         </mxCell>
         <mxCell id="vMa5X28UVjGMav1UkNeD-8" value="Broker System" style="strokeColor=#dddddd;shadow=1;strokeWidth=1;rounded=1;absoluteArcSize=1;arcSize=2;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=bottom;spacingLeft=0;fontColor=#999999;fontSize=12;whiteSpace=wrap;spacingBottom=2;html=1;" vertex="1" parent="1">
           <mxGeometry x="15" y="290" width="70" height="100" as="geometry" />
