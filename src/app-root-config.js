@@ -1,43 +1,91 @@
-import { registerApplication, start } from "single-spa";
+import {
+  constructRoutes,
+  constructApplications,
+  constructLayoutEngine,
+} from "single-spa-layout";
+import {
+  LOAD_ERROR,
+  registerApplication,
+  start,
+  getAppNames,
+  getAppStatus,
+  checkActivityFunctions,
+  addErrorHandler,
+  unloadApplication
+} from "single-spa";
 
-registerApplication({
-  name: "@app/AppHeader",
-  app: () => System.import("@app/AppHeader"),
-  activeWhen: [
-    (location) => {
-      return location.pathname.includes("/products") == false;
-    },
-  ],
+const routes = constructRoutes(document.querySelector("#single-spa-layout"), {
+  loaders: {
+    topNav: "",
+  },
+  errors: {
+    topNav: "<h1>Failed to load topnav</h1>",
+    topMenu: "<h1>Failed to load topMenu</h1>",
+  },
+  props: {
+    
+  },
+});
+const applications = constructApplications({
+  routes,
+  loadApp: ({ name }) => {
+    console.log('loadApp: ', name);
+    return System.import(name)
+  },
+});
+// Delay starting the layout engine until the styleguide CSS is loaded
+const layoutEngine = constructLayoutEngine({
+  routes,
+  applications,
+  active: false,
 });
 
-registerApplication({
-  name: "@app/AppFooter",
-  app: () => System.import("@app/AppFooter"),
-  activeWhen: [(location) => location.pathname.includes("/products") == false],
-});
+applications.forEach(registerApplication);
 
-registerApplication({
-  name: "@app/Home",
-  app: () => System.import("@app/Home"),
-  activeWhen: ["/home"],
-});
+System.import("pulse-portal-styleguide").then(() => {
+  // Activate the layout engine once the styleguide CSS is loaded
+  layoutEngine.activate();
+  window.getAppNames = getAppNames;
+  window.getAppStatus = getAppStatus;
+  start();
 
-registerApplication({
-  name: "@app/Products",
-  app: () => System.import("@app/Products"),
-  activeWhen: ["/products"],
-});
+  // addErrorHandler(err => {
+  //   console.log('===single-spa err===: ', err);
+  //   if (getAppStatus(err.appOrParcelName) === LOAD_ERROR) {
+  //     System.delete(System.resolve(err.appOrParcelName));
+  //   }
+  // });
 
-registerApplication({
-  name: "@app/ProductDetail",
-  app: () => System.import("@app/ProductDetail"),
-  activeWhen: ["/productDetail/:numberValue"],
-});
-registerApplication({
-  name: "@app/Career",
-  app: () => System.import("@app/Career"),
-  activeWhen: ["/career", "/aboutUs" , "/joinWaitList"],
-});
-start({
-  urlRerouteOnly: true,
+  // function throttle(fn, delay) {
+  //   let timer;
+  //   let lastTime = 0;
+
+  //   return function () {
+  //     const context = this;
+  //     const args = arguments;
+  //     const now = new Date().getTime();
+
+  //     if (now - lastTime > delay) {
+  //       lastTime = now;
+  //       fn.apply(context, args);
+  //     } else {
+  //       clearTimeout(timer);
+  //       timer = setTimeout(() => {
+  //         lastTime = now;
+  //         fn.apply(context, args);
+  //       }, delay - (now - lastTime));
+  //     }
+  //   };
+  // }
+
+  // window.onresize = throttle(function () {
+  //   console.log('===reload: ', new Date().getTime());
+    
+  //   window.location.replace(location.href);
+
+  //   const appsThatShouldBeActive = checkActivityFunctions();
+  //   console.log('appsThatShouldBeActive: ', appsThatShouldBeActive);
+
+  //   // unloadApplication('pulse-portal-navbar'); // dont‘t work
+  // }, 500);
 });
