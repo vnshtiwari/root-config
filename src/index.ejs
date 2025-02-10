@@ -4,19 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Prudential Health Insurance</title>
+  <title>PHI Portal</title>
+
   <!--
     Remove this if you only support browsers that support async/await.
     This is needed by babel to share largeish helper code for compiling async/await in older
     browsers. More information at https://github.com/single-spa/create-single-spa/issues/112
   -->
-  <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script> -->
+
   <!--
     This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
+  <!-- https limit -->
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';"> -->
+  
   <meta name="importmap-type" content="systemjs-importmap" />
+
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
   <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
@@ -32,50 +37,76 @@
   <script type="systemjs-importmap">
     {
       "imports": {
+        "react": "https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js",
         "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
       }
     }
   </script>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
-  <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
-  <meta name="description" content="Prudentil Health Insurance"/>
-  <link rel="icon" type="image/png" href="./images/logo_prudential.png" />
-  <meta name="theme-color" content="#000000" />
-  <link rel="apple-touch-icon" href="/images/logo_prudential.png" />
-  <link rel="manifest" href="/manifest.json" />
 
-  
   <!-- Add your organization's prod import map URL to this script's src  -->
-  <script type="systemjs-importmap" src="/importmap.json"></script>
+  <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
   <% if (isLocal) { %>
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@app/root-config": "//localhost:9000/app-root-config.js",
-        "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
-        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js",
-        "styled-components": "https://unpkg.com/styled-components/dist/styled-components.min.js",
-        "@app/AppHeader": "//localhost:8080/app-AppHeader.js",
-        "@app/AppFooter": "//localhost:8081/app-AppFooter.js",
-        "@app/appBanner": "//localhost:8082/app-appBanner.js",
-        "@app/Home": "//localhost:8083/app-Home.js",
-        "@app/Products": "//localhost:8084/app-Products.js",
-        "@app/ProductDetail": "//localhost:8085/app-ProductDetail.js",
-        "@app/Career": "//localhost:8087/app-Career.js"
+        "pulse-portal-root-config": "//localhost:3000/pulse-portal-root-config.js",
+        "pulse-portal-navbar": "//localhost:9001/pulse-portal-navbar.js",
+        "pulse-portal-styleguide": "//localhost:9002/pulse-portal-styleguide.js",
+        "pulse-portal-demo-app-sample": "//localhost:9004/pulse-portal-demo-app-sample.js",
+        "pulse-portal-demo-app-full": "//localhost:9012/pulse-portal-demo-app-full.js",
+        "pulse-portal-authentication": "//localhost:9005/pulse-portal-authentication.js",
+        "pulse-portal-landing-page": "//localhost:9006/pulse-portal-landing-page.js",
+        "pulse-portal-roles-permissions": "//localhost:9007/pulse-portal-roles-permissions.js",
+        "pulse-portal-neo-admin": "//localhost:9009/pulse-portal-neo-admin.js",
+        "pulse-portal-product-centre": "//localhost:9010/pulse-portal-product-centre.js",
+        "pulse-portal-dpas": "//localhost:4000/pulse-portal-dpas.js",
+        "pulse-portal-neopulse-developer-console": "//localhost:9011/pulse-portal-neopulse-developer-console.js",
+        "pulse-portal-wealth-admin": "//localhost:9013/pulse-portal-wealth-admin.js",
+        "pulse-portal-greeting": "//localhost:9014/pulse-portal-greeting.js",
+        "pulse-portal-reward-admin":"//http://localhost:9014/pulse-portal-reward-admin.js"
 
       }
     }
   </script>
-  <% } %>
+  <% } else { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "pulse-portal-root-config": "https://phi-operation-dev.lb1-pruinhlth-dev-az1-y57zuk.pru.intranet.asia/portal/pulse-portal-root-config/dist/pulse-portal-root-config.js",
+          "pulse-portal-navbar": "https://phi-operation-dev.lb1-pruinhlth-dev-az1-y57zuk.pru.intranet.asia/portal/pulse-portal-navbar/dist/pulse-portal-navbar.js",
+          "pulse-portal-styleguide": "https://phi-operation-dev.lb1-pruinhlth-dev-az1-y57zuk.pru.intranet.asia/portal/pulse-portal-styleguide/dist/pulse-portal-styleguide.js",
+          "pulse-portal-demo-app-sample": "//localhost:9004/pulse-portal-demo-app-sample.js",
+          "pulse-portal-demo-app-full": "//localhost:9012/pulse-portal-demo-app-full.js",
+          "pulse-portal-authentication": "https://phi-operation-dev.lb1-pruinhlth-dev-az1-y57zuk.pru.intranet.asia/portal/pulse-portal-authentication/dist/pulse-portal-authentication.js",
+          "pulse-portal-landing-page": "https://phi-operation-dev.lb1-pruinhlth-dev-az1-y57zuk.pru.intranet.asia/portal/pulse-portal-landing-page/dist/pulse-portal-landing-page.js",
+          "pulse-portal-roles-permissions": "//localhost:9007/pulse-portal-roles-permissions.js",
+          "pulse-portal-neo-admin": "//localhost:9009/pulse-portal-neo-admin.js",
+          "pulse-portal-product-centre": "//localhost:9010/pulse-portal-product-centre.js",
+          "pulse-portal-dpas": "https://phi-operation-dev.lb1-pruinhlth-dev-az1-y57zuk.pru.intranet.asia/portal/dpas-portal-frontend/dist/pulse-portal-dpas.js",
+          "pulse-portal-neopulse-developer-console": "//localhost:9011/pulse-portal-neopulse-developer-console.js",
+          "pulse-portal-wealth-admin": "//localhost:9013/pulse-portal-wealth-admin.js",
+          "pulse-portal-greeting": "//localhost:9014/pulse-portal-greeting.js",
+          "pulse-portal-reward-admin":"//http://localhost:9014/pulse-portal-reward-admin.js"
+  
+        }
+      }
+    </script>
+      <% } %>
+
+
+  <!-- #@#Symphony_Importmap_Config_Insertion#@# -->
+
 
   <!--
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
     Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
   -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script> -->
+     <!-- <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script> -->
+
 
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
   <% if (isLocal) { %>
@@ -85,40 +116,96 @@
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
   <% } %>
+
+
+
+  <!-- For integrate local app to SIT test only -->
+  <script>
+    function findGetParameter(parameterName) {
+      var result = null,
+          tmp = [];
+      var items = location.search.substr(1).split("&");
+      for (var index = 0; index < items.length; index++) {
+          tmp = items[index].split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+      }
+      return result;
+    }
+    var script = document.createElement('script');
+    script.type = 'systemjs-importmap';
+    script.innerText = JSON.stringify({
+      "imports": {
+        "pulse-portal-local-test": findGetParameter('localApp')
+      }
+    })
+    document.write(script.outerHTML);
+  </script>
+
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Sakura-pgh/oss_img@main/uPic/logo_symphony_icon.svg">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css">
+
+
+  <template id="single-spa-layout">
+    <single-spa-router mode="hash">
+      <nav class="pru-nav-box">
+        <application name="pulse-portal-navbar" error="topNav"></application>
+      </nav>
+      <div class="main-content">
+        <route path="pulse-portal-demo-app-sample">
+          <application name="pulse-portal-demo-app-sample"></application>
+        </route>
+        <route path="pulse-portal-demo-app-full">
+          <application name="pulse-portal-demo-app-full"></application>
+        </route>
+        <route path="pulse-portal-neo-admin">
+          <application name="pulse-portal-neo-admin"></application>
+        </route>
+        <route path="pulse-portal-dpas">
+          <application name="pulse-portal-dpas"></application>
+        </route>
+        <route path="pulse-portal-local-test">
+          <application name="pulse-portal-local-test"></application>
+        </route>
+        <route path="pulse-portal-product-centre">
+          <application name="pulse-portal-product-centre"></application>
+        </route>
+        <route path="pulse-portal-data-management-portal">
+          <application name="pulse-portal-data-management-portal"></application>
+        </route>
+        <route path="pulse-portal-roles-permissions">
+          <application name="pulse-portal-roles-permissions"></application>
+        </route>
+        <route path="pulse-portal-neopulse-developer-console">
+          <application name="pulse-portal-neopulse-developer-console"></application>
+        </route>
+        <route path="pulse-portal-wealth-admin">
+          <application name="pulse-portal-wealth-admin"></application>
+        </route>
+        <route path="pulse-portal-greeting">
+          <application name="pulse-portal-greeting"></application>
+        </route>
+        
+        <!-- #@#Symphony_Route_Config_Insertion#@# -->
+        <redirect from="/community" to="/coming-soon"></redirect>
+        <route path="coming-soon">
+          <application name="pulse-portal-landing-page"></application>
+        </route>
+        <route default>
+          <application name="pulse-portal-landing-page"></application>
+        </route>
+      </div>
+    </single-spa-router>
+  </template>
 </head>
 <body>
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
   <script>
-    System.import('@app/root-config');
-    //System.import('@app/appBanner');
-    if('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./serviceworker.js')
-                    .then((reg) => console.log('Success: ', reg.scope))
-                    .catch((err) => console.log('Failure: ', err));
-            })
-        }
- </script>
-  <main>
-    <single-spa-router mode="hash" base="/">
-
-    <div class="header" id="single-spa-application:@app/AppHeader"></div>
-    <route path="/home">
-    <div class="home" id="single-spa-application:@app/Home"></div>
-  </route>
-  <route path="/products">
-
-    <div class="products" id="single-spa-application:@app/Products"></div>
-  </route>
-  <div class="career" id="single-spa-application:@app/Career"></div>
-
-    <footer class="bottom">
-      <div class="footer" id="single-spa-application:@app/AppFooter"></div>
-    </footer>
-</single-spa-router>
-  </main> 
+    System.import('pulse-portal-root-config');
+    System.import('pulse-portal-styleguide');
+  </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
 </html>
